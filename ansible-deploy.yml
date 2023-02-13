@@ -4,7 +4,7 @@
   tasks:
     - name: Pull Docker image
       docker_image:
-        name: "renckel/hello-fastapi:latest"
+        name: "renckel/fastapi-for-ci-cd:latest"
         source: pull
 
     - name: Stop and remove existing container with the same name
@@ -15,7 +15,7 @@
     - name: Run Docker container
       docker_container:
         name: target-project
-        image: "renckel/hello-fastapi:latest"
+        image: "renckel/fastapi-for-ci-cd:latest"
         state: started
         ports:
           - "80:80"
