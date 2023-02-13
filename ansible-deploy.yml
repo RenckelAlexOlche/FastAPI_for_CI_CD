@@ -12,7 +12,7 @@
       shell: sudo docker rm target-project
 
     - name: Run container
-      shell: sudo docker run --name target-project -p 80:80 -e MYSQL_USER="root" -e MYSQL_PASSWORD=$MYSQL_PASSWORD -e MYSQL_HOST="mysql-server" -e MYSQL_PORT="3306" -e MYSQL_DB="devops_finaltask_db" -e JWT_SECRET=$JWT_SECRET -d renckel/fastapi-for-ci-cd:latest
+      shell: sudo docker run --name target-project -p 80:80 -e MYSQL_USER="root" -e MYSQL_PASSWORD=$MYSQL_PASSWORD -e MYSQL_HOST="mysql-server-container" -e MYSQL_PORT="3306" -e MYSQL_DB="devops_finaltask_db" -e JWT_SECRET=$JWT_SECRET -d renckel/fastapi-for-ci-cd:latest
 
     - name: Update database
       shell: sudo docker exec target-project alembic -c app/alembic.ini stamp head
