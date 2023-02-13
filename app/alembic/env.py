@@ -28,8 +28,8 @@ config.set_section_option(section, "MYSQL_DB", os.environ.get("MYSQL_DB"))
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from models import *
-from database import Base
+from app.models import *
+from app.database import Base
 target_metadata = Base.metadata
 
 # other values from the config, defined by the needs of env.py,
