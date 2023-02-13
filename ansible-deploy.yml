@@ -6,10 +6,10 @@
       shell: sudo docker pull renckel/fastapi-for-ci-cd:latest
     
     - name: Stop old container
-      shell: sudo docker stop target-project
+      shell: sudo docker stop target-project || true
 
     - name: Remove old container  
-      shell: sudo docker rm target-project
+      shell: sudo docker rm target-project || true
 
     - name: Run container
       shell: sudo docker run --name target-project -p 80:80 -e MYSQL_USER="root" -e MYSQL_PASSWORD=$MYSQL_PASSWORD -e MYSQL_HOST="0.0.0.0" -e MYSQL_PORT="3306" -e MYSQL_DB="devops_finaltask_db" -e JWT_SECRET=$JWT_SECRET -d renckel/fastapi-for-ci-cd:latest
