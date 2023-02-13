@@ -22,7 +22,6 @@ section = config.config_ini_section
 config.set_section_option(section, "MYSQL_USER", os.environ.get("MYSQL_USER"))
 config.set_section_option(section, "MYSQL_PASSWORD", quote_plus(os.environ.get("MYSQL_PASSWORD")).replace("%", "%%"))
 config.set_section_option(section, "MYSQL_HOST", os.environ.get("MYSQL_HOST"))
-config.set_section_option(section, "MYSQL_PORT", os.environ.get("MYSQL_PORT"))
 config.set_section_option(section, "MYSQL_DB", os.environ.get("MYSQL_DB"))
 
 # add your model's MetaData object here
