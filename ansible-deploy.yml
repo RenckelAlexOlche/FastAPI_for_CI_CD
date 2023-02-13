@@ -3,26 +3,22 @@
   become: true
   tasks:
     - name: Pull Docker image
-      docker_image:
-        name: "renckel/fastapi-for-ci-cd:latest"
-        source: pull
+      shell: sudo docker pull renckel/fastapi-for-ci-cd:latest
+    
+    - name: Stop old container
+      shell: sudo docker stop target-project
 
-    - name: Stop and remove existing container with the same name
-      docker_container:
-        name: target-project
-        state: absent
+    - name: Remove old container  
+      shell: sudo docker rm target-project
 
-    - name: Run Docker container
-      docker_container:
-        name: target-project
-        image: "renckel/fastapi-for-ci-cd:latest"
-        state: started
-        ports:
-          - "80:80"
-        env:
-          MYSQL_USER: "root"
-          MYSQL_PASSWORD: "{{ lookup('env','MYSQL_PASSWORD') }}"
-          MYSQL_HOST: "mysql-server-container"
-          MYSQL_PORT: "3306"
-          MYSQL_DB: "devops_finaltask_db"
-          JWT_SECRET: "{{ lookup('env','JWT_SECRET') }}"
+    - name: run container
+      shell: sudo docker run --name target-project \
+      -p 80:80 \
+      -e MYSQL_USER="root" \
+      -e MYSQL_PASSWORD=$MYSQL_PASSWORD \
+      -e MYSQL_HOST="mysql-server" \
+      -e MYSQL_PORT="3306" \
+      -e MYSQL_DB="devops_finaltask_db" \
+      -e JWT_SECRET=$JWT_SECRET \
+      -d \
+      renckel/fastapi-for-ci-cd:latest
