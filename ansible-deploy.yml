@@ -1,0 +1,28 @@
+---
+- hosts: webserver
+  become: true
+  tasks:
+    - name: Pull Docker image
+      docker_image:
+        name: "renckel/hello-fastapi:latest"
+        source: pull
+
+    - name: Stop and remove existing container with the same name
+      docker_container:
+        name: target-project
+        state: absent
+
+    - name: Run Docker container
+      docker_container:
+        name: target-project
+        image: "renckel/hello-fastapi:latest"
+        state: started
+        ports:
+          - "80:80"
+        env:
+          MYSQL_USER: "root"
+          MYSQL_PASSWORD: "{{ lookup('env','MYSQL_PASSWORD') }}"
+          MYSQL_HOST: "mysql-server-container"
+          MYSQL_PORT: "3306"
+          MYSQL_DB: "devops_finaltask_db"
+          JWT_SECRET: "{{ lookup('env','JWT_SECRET') }}"
