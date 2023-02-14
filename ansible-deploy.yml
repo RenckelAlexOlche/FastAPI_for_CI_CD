@@ -2,6 +2,9 @@
 - hosts: webserver
   become: true
   tasks:
+    - name: Delete old Docker image
+      shell: sudo docker rmi renckel/fastapi-for-ci-cd:latest
+
     - name: Pull Docker image
       shell: sudo docker pull renckel/fastapi-for-ci-cd:latest
     
