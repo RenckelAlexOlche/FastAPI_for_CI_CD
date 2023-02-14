@@ -26,9 +26,9 @@
 <div style="height: 50px;">
 </div>
 
-<div class="d-flex flex-column align-items-center">
+<div class="d-flex flex-column align-items-center table-container">
   <h2>Tasks</h2>
-  <table class="table table-striped table-container">
+  <table class="table table-striped w-100">
     <thead>
       <tr class="bg-success">
         <th scope="col">№</th>
@@ -47,7 +47,7 @@
     </tbody>
   </table>
 
-  <form class="col-md-6 d-flex flex-column align-items-center" method="POST" action="/task">
+  <form class="w-100 d-flex flex-column align-items-center" method="POST" action="/task">
     <h3>Create new task</h3>
     <input type="text" name="title" class="my-3 form-control custom-control" placeholder="Title" required>
     <textarea name="content" class="my-3 form-control custom-control" placeholder="Content" required></textarea>
