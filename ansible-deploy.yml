@@ -15,10 +15,7 @@
       shell: "sudo docker rm target-project || true"
 
     - name: Run container
-      environment:
-        MYSQL_PASSWORD: "{{ lookup('ansible.builtin.env', 'MYSQL_PASSWORD') }}"
-        JWT_SECRET: "{{ lookup('ansible.builtin.env', 'JWT_SECRET', default='secret') }}"
-      shell: "sudo docker run --name target-project -p 80:80 -e MYSQL_USER='root' -e MYSQL_PASSWORD=$MYSQL_PASSWORD -e MYSQL_HOST='mysql-server-container' -e MYSQL_PORT='3306' -e MYSQL_DB='devops_finaltask_db' -e JWT_SECRET=$JWT_SECRET -d --network=target-app-net renckel/fastapi-for-ci-cd:latest"
+      shell: "sudo docker run --name target-project -p 80:80 -e MYSQL_USER='root' -e MYSQL_PASSWORD='31xLobOJO4fFUKE62oOFA8ev1jhFRq' -e MYSQL_HOST='mysql-server-container' -e MYSQL_PORT='3306' -e MYSQL_DB='devops_finaltask_db' -e JWT_SECRET='m9nrS3ZayDL08v43wKFDYn9tyNipVI' -d --network=target-app-net renckel/fastapi-for-ci-cd:latest"
 
     - name: Update database
       shell: "sudo docker exec target-project alembic -c app/alembic.ini stamp head"
