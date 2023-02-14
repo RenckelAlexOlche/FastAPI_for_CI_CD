@@ -18,4 +18,4 @@
       shell: "sudo docker run --name target-project -p 80:80 -e MYSQL_USER='root' -e MYSQL_PASSWORD='31xLobOJO4fFUKE62oOFA8ev1jhFRq' -e MYSQL_HOST='mysql-server-container' -e MYSQL_PORT='3306' -e MYSQL_DB='devops_finaltask_db' -e JWT_SECRET='m9nrS3ZayDL08v43wKFDYn9tyNipVI' -d --network=target-app-net renckel/fastapi-for-ci-cd:latest"
 
     - name: Update database
-      shell: "sudo docker exec target-project alembic -c app/alembic.ini stamp head"
+      shell: "sudo docker exec target-project alembic -c app/alembic.ini upgrade head"
