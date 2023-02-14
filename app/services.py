@@ -21,10 +21,7 @@ class UserService:
             )
         role: models.Role = crud.get_role_by_name(db, role_name)
         if role is None:
-            raise HTTPException(
-            status_code = 404,
-            detail      = [{'title': 'InvalidRoleName', 'description': 'No role with this name was found'}]
-            )
+            crud.create_role(db, models.Role(name = role_name))
 
 
         return schemas.User.from_orm(crud.add_user_role(db, user, role))

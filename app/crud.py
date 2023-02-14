@@ -30,6 +30,12 @@ def create_user(db: Session, user: models.User) -> models.User:
     db.refresh(user)
     return user
 
+def create_role(db: Session, role: models.Role) -> models.Role:
+    db.add(role)
+    db.commit()
+    db.refresh(role)
+    return role
+
 
 def get_role_by_name(db: Session, name: str) -> models.Role:
     return db.query(models.Role).filter(models.Role.name == name).first() 
