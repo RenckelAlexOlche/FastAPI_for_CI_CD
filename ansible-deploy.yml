@@ -14,6 +14,9 @@
     - name: Remove old container  
       shell: "sudo docker rm target-project-old || true"
 
+    - name: Stop latest container
+      shell: "sudo docker stop target-project || true"
+
     - name: Rename latest container  
       shell: "sudo docker rename target-project-old target-project || true"
 
