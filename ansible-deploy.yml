@@ -18,7 +18,7 @@
       shell: "sudo docker stop target-project || true"
 
     - name: Rename latest container  
-      shell: "sudo docker rename target-project-old target-project || true"
+      shell: "sudo docker rename target-project target-project-old || true"
 
     - name: Run container
       shell: "sudo docker run --name target-project -p 80:80 -e MYSQL_USER='root' -e MYSQL_PASSWORD='31xLobOJO4fFUKE62oOFA8ev1jhFRq' -e MYSQL_HOST='mysql-server-container' -e MYSQL_PORT='3306' -e MYSQL_DB='devops_finaltask_db' -e JWT_SECRET='m9nrS3ZayDL08v43wKFDYn9tyNipVI' -d --network=target-app-net renckel/fastapi-for-ci-cd:latest"
