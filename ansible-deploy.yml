@@ -8,9 +8,6 @@
     - name: Pull Docker image
       shell: "sudo docker pull renckel/fastapi-for-ci-cd:latest"
     
-    - name: Stop old container
-      shell: "sudo docker stop target-project-old || true"
-
     - name: Remove old container  
       shell: "sudo docker rm target-project-old || true"
 
@@ -22,6 +19,9 @@
 
     - name: Run container
       shell: "sudo docker run --name target-project -p 80:80 -e MYSQL_USER='root' -e MYSQL_PASSWORD='31xLobOJO4fFUKE62oOFA8ev1jhFRq' -e MYSQL_HOST='mysql-server-container' -e MYSQL_PORT='3306' -e MYSQL_DB='devops_finaltask_db' -e JWT_SECRET='m9nrS3ZayDL08v43wKFDYn9tyNipVI' -d --network=target-app-net renckel/fastapi-for-ci-cd:latest"
+
+    - name: Create DB
+      shell: "sudo docker exec mysql-server-container mysql -u root --password=31xLobOJO4fFUKE62oOFA8ev1jhFRq -e 'create database devops_finaltask_db;' || true"
 
     - name: Update database
       shell: "sudo docker exec target-project alembic -c app/alembic.ini upgrade head"

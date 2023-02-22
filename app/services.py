@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from app import models, schemas, crud
 
 
-jwt_secret = os.environ.get('JWT_SECRET', 'secret')
+#jwt_secret = os.environ.get('JWT_SECRET', 'secret')
 
 class UserService:
     
